@@ -6,7 +6,9 @@ from flask import (
 
     request,
 
-    session
+    session,
+
+    redirect
 )
 
 import markdown
@@ -20,6 +22,7 @@ app = Flask(__name__)
 
 app.secret_key = "legalchatbot"
 
+
 @app.route(
 
     "/",
@@ -29,15 +32,12 @@ app.secret_key = "legalchatbot"
 
 def home():
 
-    # Fresh chat every time page opens
-    if request.method == "GET":
-
-        session["chat_history"] = []
-
+    # Create chat history only once
     if "chat_history" not in session:
 
         session["chat_history"] = []
 
+    # When user sends message
     if request.method == "POST":
 
         query = request.form["query"]
@@ -64,23 +64,24 @@ def home():
         chat_history=session["chat_history"]
     )
 
-# Clear Chat Route
-@app.route("/clear")
+
+# CLEAR CHAT ROUTE
+@app.route("/clear", methods=["GET"])
 
 def clear_chat():
 
     session["chat_history"] = []
 
-    return render_template(
+    return redirect("/")
 
-        "index.html",
-
-        chat_history=[]
-    )
 
 if __name__ == "__main__":
 
     app.run(
-    host="0.0.0.0",
-    port=5000
-)
+
+        host="0.0.0.0",
+
+        port=5000,
+
+        debug=True
+    )

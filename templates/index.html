@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Legal AI Chatbot</title>
 
@@ -15,10 +20,31 @@
 
 <div class="chat-container">
 
+    <!-- HEADER -->
     <div class="chat-header">
 
-        <span>⚖ Legal AI Chatbot</span>
+        <!-- LEFT SECTION -->
+    <!-- LEFT SECTION -->
+<div class="header-left">
 
+    <!-- BIG FLOATING LOGO -->
+    <img src="{{ url_for('static',
+         filename='logo.png') }}"
+         class="main-logo"
+         alt="Legal AI Logo">
+
+    <!-- TITLE -->
+    <div class="header-text">
+
+        <h1>Legal AI Chatbot</h1>
+
+        <span>Your AI Legal Assistant</span>
+
+    </div>
+
+</div>
+
+        <!-- CLEAR BUTTON -->
         <a href="/clear">
 
             <button class="clear-btn">
@@ -31,16 +57,19 @@
 
     </div>
 
+    <!-- CHAT AREA -->
     <div class="chat-box">
 
         {% for chat in chat_history %}
 
+            <!-- USER MESSAGE -->
             <div class="user-message">
 
                 {{ chat.user }}
 
             </div>
 
+            <!-- BOT MESSAGE -->
             <div class="bot-message">
 
                 {{ chat.bot|safe }}
@@ -51,20 +80,22 @@
 
     </div>
 
-    <!-- Typing Indicator -->
+    <!-- TYPING INDICATOR -->
     <div id="typing-indicator">
 
         Bot is typing...
 
     </div>
 
+    <!-- INPUT FORM -->
     <form method="POST"
           class="chat-form"
           onsubmit="showTyping()">
 
         <input type="text"
                name="query"
-               placeholder="Ask legal question..."
+               placeholder="Ask your legal question here..."
+               autocomplete="off"
                required>
 
         <button type="submit">
@@ -79,12 +110,12 @@
 
 <script>
 
-    // Auto scroll to latest message
+    // AUTO SCROLL TO BOTTOM
     const chatBox = document.querySelector('.chat-box');
 
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Typing animation
+    // SHOW TYPING ANIMATION
     function showTyping(){
 
         document.getElementById(
@@ -95,4 +126,5 @@
 </script>
 
 </body>
+
 </html>
