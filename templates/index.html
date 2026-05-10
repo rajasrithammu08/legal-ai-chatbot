@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Legal AI Chatbot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+
+        <span>⚖ Legal AI Chatbot</span>
+
+        <a href="/clear">
+
+            <button class="clear-btn">
+
+                Clear Chat
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <div class="chat-box">
+
+        {% for chat in chat_history %}
+
+            <div class="user-message">
+
+                {{ chat.user }}
+
+            </div>
+
+            <div class="bot-message">
+
+                {{ chat.bot|safe }}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- Typing Indicator -->
+    <div id="typing-indicator">
+
+        Bot is typing...
+
+    </div>
+
+    <form method="POST"
+          class="chat-form"
+          onsubmit="showTyping()">
+
+        <input type="text"
+               name="query"
+               placeholder="Ask legal question..."
+               required>
+
+        <button type="submit">
+
+            Send
+
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+    // Auto scroll to latest message
+    const chatBox = document.querySelector('.chat-box');
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Typing animation
+    function showTyping(){
+
+        document.getElementById(
+            "typing-indicator"
+        ).style.display = "block";
+    }
+
+</script>
+
+</body>
+</html>
