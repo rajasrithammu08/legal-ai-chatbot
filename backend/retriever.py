@@ -6,17 +6,14 @@ from sentence_transformers import (
     SentenceTransformer
 )
 
-# Load model
 model = SentenceTransformer(
     'all-MiniLM-L6-v2'
 )
 
-# Load FAISS index
 index = faiss.read_index(
     "data/legal_index.faiss"
 )
 
-# Load dataset
 with open(
     "data/legal_data.pkl",
     "rb"

@@ -32,12 +32,11 @@ app.secret_key = "legalchatbot"
 
 def home():
 
-    # Create chat history only once
+    
     if "chat_history" not in session:
 
         session["chat_history"] = []
 
-    # When user sends message
     if request.method == "POST":
 
         query = request.form["query"]
@@ -65,7 +64,6 @@ def home():
     )
 
 
-# CLEAR CHAT ROUTE
 @app.route("/clear", methods=["GET"])
 
 def clear_chat():

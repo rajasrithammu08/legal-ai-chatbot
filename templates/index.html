@@ -20,20 +20,19 @@
 
 <div class="chat-container">
 
-    <!-- HEADER -->
+    
     <div class="chat-header">
 
-        <!-- LEFT SECTION -->
-    <!-- LEFT SECTION -->
+    
 <div class="header-left">
 
-    <!-- BIG FLOATING LOGO -->
+
     <img src="{{ url_for('static',
          filename='logo.png') }}"
          class="main-logo"
          alt="Legal AI Logo">
 
-    <!-- TITLE -->
+    
     <div class="header-text">
 
         <h1>Legal AI Chatbot</h1>
@@ -44,7 +43,7 @@
 
 </div>
 
-        <!-- CLEAR BUTTON -->
+    
         <a href="/clear">
 
             <button class="clear-btn">
@@ -57,19 +56,19 @@
 
     </div>
 
-    <!-- CHAT AREA -->
+
     <div class="chat-box">
 
         {% for chat in chat_history %}
 
-            <!-- USER MESSAGE -->
+        
             <div class="user-message">
 
                 {{ chat.user }}
 
             </div>
 
-            <!-- BOT MESSAGE -->
+        
             <div class="bot-message">
 
                 {{ chat.bot|safe }}
@@ -80,14 +79,14 @@
 
     </div>
 
-    <!-- TYPING INDICATOR -->
+
     <div id="typing-indicator">
 
         Bot is typing...
 
     </div>
 
-    <!-- INPUT FORM -->
+
     <form method="POST"
           class="chat-form"
           onsubmit="showTyping()">
@@ -110,12 +109,11 @@
 
 <script>
 
-    // AUTO SCROLL TO BOTTOM
+    
     const chatBox = document.querySelector('.chat-box');
 
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // SHOW TYPING ANIMATION
     function showTyping(){
 
         document.getElementById(
